@@ -10,4 +10,8 @@ router.get("/getBookByAuthor", booksController.getBookByAuthor);
 
 router.delete("/deleteBook", booksController.deleteBook);
 
+// router.post("/uploadPdf", booksController.uploadPdf);
+
+router.post("/search", booksController.search);
+
 module.exports = router;

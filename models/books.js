@@ -17,6 +17,7 @@ const BookBank = mongoose.Schema(
       required: false,
       unique: false,
     },
+    book_url: {},
   },
   {
     timestamps: true,
