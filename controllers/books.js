@@ -44,7 +44,7 @@ exports.getAllBooks = async (req, res) => {
 exports.getBookByTitle = async (req, res) => {
   try {
     const { title } = req.params;
-    const bookDetails = await BookStore.findById(title);
+    const bookDetails = await BookStore.find({ title });
 
     return res.status(200).json(bookDetails);
   } catch (error) {
@@ -57,7 +57,7 @@ exports.getBookByTitle = async (req, res) => {
 exports.getBookByAuthor = async (req, res) => {
   try {
     const { Author } = req.params;
-    const bookDetails = await BookStore.findById(Author);
+    const bookDetails = await BookStore.find({ author: Author });
 
     return res.status(200).json(bookDetails);
   } catch (error) {
@@ -69,19 +69,19 @@ exports.getBookByAuthor = async (req, res) => {
 
 exports.search = async (req, res) => {
   try {
-    const text = req.body.text;
+    const { s } = req.query;
 
     const result = await BookStore.findOne({
       $or: [
         {
           title: {
-            $regex: text,
+            $regex: s,
             $options: "i",
           },
         },
         {
           author: {
-            $regex: text,
+            $regex: s,
             $options: "i",
           },
         },
